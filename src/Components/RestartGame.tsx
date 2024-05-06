@@ -1,19 +1,16 @@
-import React from 'react'
+import { useContext } from "react"
+import { PlayersContext } from "../App"
 
-type Props = {
-    setPlayerOneMove: React.Dispatch<React.SetStateAction<string>>,
-    setPlayerTwoMove: React.Dispatch<React.SetStateAction<string>>,
-    setPlayerOneScore: React.Dispatch<React.SetStateAction<number>>,
-    setPlayerTwoScore: React.Dispatch<React.SetStateAction<number>>
-}
+const RestartGame = () => {
 
-const RestartGame = (props: Props) => {
+    const playerOne = useContext(PlayersContext).playerOne
+    const playerTwo = useContext(PlayersContext).playerTwo
+    const setPlayerOne = useContext(PlayersContext).setPlayerOne
+    const setPlayerTwo = useContext(PlayersContext).setPlayerTwo
 
     const handleClick = (): void => {
-        props.setPlayerOneMove('')
-        props.setPlayerTwoMove('')
-        props.setPlayerOneScore(0)
-        props.setPlayerTwoScore(0)
+        setPlayerOne({...playerOne, move: '', score: 0})
+        setPlayerTwo({...playerTwo, move: '', score: 0})
     }
 
   return (

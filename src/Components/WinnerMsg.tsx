@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { PlayersContext } from "../App"
 
-type Props = {
-    playerOneMove: string,
-    playerTwoMove: string,
-    playerOneScore: number, 
-    playerTwoScore: number,
-    setPlayerOneScore: React.Dispatch<React.SetStateAction<number>>,
-    setPlayerTwoScore: React.Dispatch<React.SetStateAction<number>>
-}
-
-const WinnerMsg = (props: Props) => {
+const WinnerMsg = () => {
   
     const [winningMsg, setWinningMsg] = useState<string>('')
+    const playerOne = useContext(PlayersContext).playerOne
+    const playerTwo = useContext(PlayersContext).playerTwo
+    const setPlayerOne = useContext(PlayersContext).setPlayerOne
+    const setPlayerTwo = useContext(PlayersContext).setPlayerTwo
 
     useEffect(() => {
 
@@ -24,17 +20,17 @@ const WinnerMsg = (props: Props) => {
                 return 'scissors'
         }
 
-        if(props.playerOneMove === props.playerTwoMove)
+        if(playerOne.move === playerTwo.move)
             setWinningMsg('Draw')
         else{
-            const winnerOption = calculateWinner([props.playerOneMove, props.playerTwoMove])
-            if(props.playerOneMove === winnerOption){
+            const winnerOption = calculateWinner([playerOne.move, playerTwo.move])
+            if(playerOne.move === winnerOption){
                 setWinningMsg('Player 1 Won')
-                props.setPlayerOneScore(props.playerOneScore + 1)
+                setPlayerOne({...playerOne, score: playerOne.score + 1})
             }
             else{
                 setWinningMsg('Player 2 won')
-                props.setPlayerTwoScore(props.playerTwoScore + 1)
+                setPlayerTwo({...playerTwo, score: playerTwo.score + 1})
             }
         }
 

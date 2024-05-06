@@ -1,15 +1,16 @@
-import React from "react"
+import { useContext } from "react"
+import { PlayersContext } from "../App"
 
-type Props = {
-    setPlayerOneMove: React.Dispatch<React.SetStateAction<string>>,
-    setPlayerTwoMove: React.Dispatch<React.SetStateAction<string>>
-}
-
-const AnotherRound = (props: Props) => {
+const AnotherRound = () => {
     
+    const playerOne = useContext(PlayersContext).playerOne
+    const playerTwo = useContext(PlayersContext).playerTwo
+    const setPlayerOne = useContext(PlayersContext).setPlayerOne
+    const setPlayerTwo = useContext(PlayersContext).setPlayerTwo
+
     const handleClick = (): void => {
-        props.setPlayerOneMove('')
-        props.setPlayerTwoMove('')
+        setPlayerOne({...playerOne, move: ''})
+        setPlayerTwo({...playerTwo, move: ''})
     }
   
     return (

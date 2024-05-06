@@ -1,37 +1,38 @@
-import { useState } from 'react'
-import UserSide from './Components/UserSide'
+import { useState, createContext } from 'react'
+import { Player, PlayersContextType } from './types/types'
+import PlayerSide from './Components/PlayerSide'
 import WinnerMsg from './Components/WinnerMsg'
 import AnotherRound from './Components/AnotherRound'
 import RestartGame from './Components/RestartGame'
 import './App.css'
 
+export const PlayersContext = createContext<PlayersContextType>(null!) 
+
 function App() {
 
-  const [playerOneMove, setPlayerOneMove] = useState<string>('')
-  const [playerOneScore, setPlayerOneScore] = useState<number>(0)
-  const [playerTwoMove, setPlayerTwoMove] = useState<string>('')
-  const [playerTwoScore, setPlayerTwoScore] = useState<number>(0)
+  const [playerOne, setPlayerOne] = useState<Player>({ id: 1, move: '', score: 0 })
+  const [playerTwo, setPlayerTwo] = useState<Player>({ id: 2, move: '', score: 0 })
 
   return (
-    <>
+    <PlayersContext.Provider value={{playerOne: playerOne, playerTwo: playerTwo, setPlayerOne: setPlayerOne, setPlayerTwo: setPlayerTwo}}>
+      
       <h1 className='title'>Welcome To The Game</h1>
 
       <div className='sides'>
-        <UserSide playerMove={playerOneMove} setPlayerMove={setPlayerOneMove} playerScore={playerOneScore} playerNumber={1} />
-        <UserSide playerMove={playerTwoMove} setPlayerMove={setPlayerTwoMove} playerScore={playerTwoScore} playerNumber={2} />
+        <PlayerSide player={playerOne} setPlayer={setPlayerOne} />
+        <PlayerSide player={playerTwo} setPlayer={setPlayerTwo} />
       </div>
 
-      {playerOneMove !== '' && playerTwoMove !== '' &&
+      {playerOne.move !== '' && playerTwo.move !== '' &&
         <div className='bottom'>
-          <WinnerMsg playerOneMove={playerOneMove} playerTwoMove={playerTwoMove} playerOneScore={playerOneScore}
-            playerTwoScore={playerTwoScore} setPlayerOneScore={setPlayerOneScore} setPlayerTwoScore={setPlayerTwoScore} />
-          <AnotherRound setPlayerOneMove={setPlayerOneMove} setPlayerTwoMove={setPlayerTwoMove} />
+          <WinnerMsg />
+          <AnotherRound />
         </div>
       }
 
-      <RestartGame setPlayerOneMove={setPlayerOneMove} setPlayerTwoMove={setPlayerTwoMove} setPlayerOneScore={setPlayerOneScore}
-        setPlayerTwoScore={setPlayerTwoScore} />
-    </>
+      <RestartGame />
+
+    </PlayersContext.Provider>
   )
 }
 
