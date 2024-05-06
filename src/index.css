@@ -5,30 +5,32 @@ body {
   background: rgb(131,58,180);
   background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
   font-family: "Poppins", sans-serif;
-  color: rgb(233, 187, 187);
+  color: rgb(233, 210, 210);
 }
 
-h1 {
-  font-size: 3.2em;
+ul{
+  position: relative;
+  right: 10%;
+}
+
+li{
+  margin-bottom: 10px;
+  list-style-type: none;
 }
 
 button {
+  color: rgb(233, 210, 210);
+  border: 1px solid rgb(233, 210, 210);
   border-radius: 8px;
-  border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: transparent;
   cursor: pointer;
-  border-color:rgb(233, 187, 187);
-  transition: border-color 0.25s;
-  color: rgb(233, 187, 187);
+  transition: transform 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transform: scale(1.1);
 }

@@ -6,7 +6,8 @@ import { FaRegHandPaper } from "react-icons/fa";
 type Props = {
     playerMove: string,
     setPlayerMove: React.Dispatch<React.SetStateAction<string>>,
-    playerScore: number
+    playerScore: number,
+    playerNumber: number
 }
 
 const UserSide = (props: Props) => {
@@ -23,16 +24,14 @@ const UserSide = (props: Props) => {
 
   return (
     <div>
-        <h1>PLAYER {props.playerScore}</h1>
+        <h1 className="player-title">PLAYER {props.playerNumber}</h1>
+        <h2>Score: {props.playerScore}</h2>
         {props.playerMove === '' ?
-            <>
-                <p>Please choose your move</p>
-                <ul>
-                    <li onClick={() => setMove('rock')}><FaRegHandRock className="icon" /></li>
-                    <li onClick={() => setMove('paper')}><FaRegHandPaper className="icon" /></li>
-                    <li onClick={() => setMove('scissors')}><FaRegHandScissors className="icon" /></li>
-                </ul>
-            </> 
+            <ul>
+                <li><FaRegHandRock className="icon" onClick={() => setMove('rock')} /></li>
+                <li><FaRegHandPaper className="icon" onClick={() => setMove('paper')} /></li>
+                <li><FaRegHandScissors className="icon" onClick={() => setMove('scissors')} /></li>
+            </ul>
             : <p>{chosenIcon}</p>
         }
     </div>
