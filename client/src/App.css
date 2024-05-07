@@ -1,0 +1,41 @@
+#root {
+  text-align: center;
+}
+
+.title{
+  font-size: 3em;
+}
+
+.players{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 3% auto;
+}
+
+.player-title{
+  font-size: 2.5em;
+}
+
+.icon{
+  font-size: xx-large;
+}
+
+.pointer-icon{
+  cursor: pointer;  
+}
+
+.round-ended{
+  height: 7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  position: relative;
+  bottom: 35px;
+}
+
+.round-ended-msg{
+  font-size: x-large;
+}
